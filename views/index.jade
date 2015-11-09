@@ -3,3 +3,14 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  #content
+
+block scripts
+  script(src="/templates.js")
+  script(src="/models/thing.js")
+  script(src="/collections/things.js")
+  script(src="/views/things.js")
+  script.
+    new ThingsView({
+      collection: new ThingsCollection
+    });

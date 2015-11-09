@@ -3,11 +3,15 @@ module.exports = function(grunt) {
   grunt.initConfig({
     jade: {
       options: {
-        client: true
+        client: true,
+        namespace: 'templates',
+        processName: function (filename) {
+          return filename.match(/^templates\/(.+)\.jade$/)[1];
+        }
       },
       files: {
         src: 'templates/*.jade',
-        dest: 'public/js/templates.js'
+        dest: 'public/templates.js'
       }
     },
     watch: {
