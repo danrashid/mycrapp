@@ -14,14 +14,6 @@ a {
   text-decoration: none;
 }
 
-table {
-  border-collapse: collapse;
-}
-
-tr:not(:first-child) {
-  border-top: 1px solid WhiteSmoke;
-}
-
-td {
-  padding: .5em;
+[data-delete-guid] {
+  margin-left: .5em;
 }

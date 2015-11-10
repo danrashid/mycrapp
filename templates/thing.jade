@@ -1,0 +1,14 @@
+h2 Thing
+  small  #{thing.guid}
+
+form
+  p
+    label Name
+      br
+      input(type="text" name="name" value=thing.name required)
+  p
+    label Description
+      br
+      textarea(name="description")= thing.description
+  p
+    button(type="submit") Save

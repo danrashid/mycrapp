@@ -1,16 +1,28 @@
 extends layout
 
 block content
-  h1= title
+  h1
+    a(href="/")= title
   p Welcome to #{title}
   #content
 
 block scripts
+  script(src="/router.js")
   script(src="/templates.js")
   script(src="/models/thing.js")
   script(src="/collections/things.js")
   script(src="/views/things.js")
+  script(src="/views/thing.js")
   script.
-    new ThingsView({
-      collection: new ThingsCollection
-    });
+    (function () {
+      var router = new Router();
+
+      Backbone.history.start({pushState: true});
+
+      if (window.location.pathname === '/') {
+        router.navigate('things', {
+          trigger: true,
+          replace: true
+        })
+      }
+    }());

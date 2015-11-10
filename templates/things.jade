@@ -1,7 +1,21 @@
-table
+h2 Things
+
+ul
   each thing in things
-    tr
-      td
-        a(href="/things/" + thing.guid)= thing.name
-      td
-        a(href="#") ×
+    li
+      a(href="/things/" + thing.guid)= thing.name
+      a(href="#" data-delete-guid=thing.guid) ×
+
+h3 Add a Thing
+
+form
+  p
+    label Name
+      br
+      input(type="text" name="name" required)
+  p
+    label Description
+      br
+      textarea(name="description")
+  p
+    button(type="submit") Add
