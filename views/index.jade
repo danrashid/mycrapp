@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1
-    a(href="/")= title
+    a(href="/#things")= title
   p Welcome to #{title}
   #content
 
@@ -17,9 +17,9 @@ block scripts
     (function () {
       var router = new Router();
 
-      Backbone.history.start({pushState: true});
+      Backbone.history.start();
 
-      if (window.location.pathname === '/') {
+      if (window.location.hash === '') {
         router.navigate('things', {
           trigger: true,
           replace: true

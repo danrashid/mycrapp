@@ -1,7 +1,6 @@
-h2 Thing
-  small  #{thing.guid}
+h2 Thing with guid: #{thing.guid}
 
-form
+form.put
   p
     label Name
       br
@@ -12,3 +11,7 @@ form
       textarea(name="description")= thing.description
   p
     button(type="submit") Save
+
+form.delete
+  p
+    button(type="submit") Delete

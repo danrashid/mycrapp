@@ -1,25 +1,28 @@
+'use strict';
+
 var ThingsView = Backbone.View.extend({
   el: '#content',
 
   template: templates.things,
 
   events: {
-    'click [data-delete-guid]': 'deleteThing',
+    'click [data-delete-guid]': 'delete',
     'submit form': 'post'
   },
 
-  initialize: function() {
+  initialize: function () {
+    this.listenToOnce(this.collection, 'sync', this.render);
     this.listenTo(this.collection, 'update', this.render);
     this.collection.fetch();
   },
 
-  render: function() {
+  render: function () {
     this.$el.html(this.template({
-      things: this.collection.toJSON()
+      things: _.pluck(this.collection.models, 'attributes')
     }));
   },
 
-  deleteThing: function(event) {
+  delete: function (event) {
     var guid = $(event.target).data('deleteGuid');
 
     this.collection.get(guid).destroy();
@@ -27,7 +30,7 @@ var ThingsView = Backbone.View.extend({
     return false;
   },
 
-  post: function(event) {
+  post: function (event) {
     var form = event.target;
 
     this.collection.create({

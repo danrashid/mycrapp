@@ -1,24 +1,37 @@
+'use strict';
+
 var ThingView = Backbone.View.extend({
   el: '#content',
 
   template: templates.thing,
 
   events: {
-    'submit form': 'put'
+    'submit form.delete': 'delete',
+    'submit form.put': 'put'
   },
 
-  initialize: function() {
+  initialize: function () {
     this.listenTo(this.model, 'change', this.render);
     this.model.fetch();
   },
 
-  render: function() {
+  render: function () {
     this.$el.html(this.template({
-      thing: this.model.toJSON()
+      thing: this.model.attributes
     }));
   },
 
-  put: function(event) {
+  delete: function () {
+    this.model.destroy({
+      success: function () {
+        window.location.hash = '#things';
+      }
+    });
+
+    return false;
+  },
+
+  put: function (event) {
     var form = event.target;
 
     this.model.save({

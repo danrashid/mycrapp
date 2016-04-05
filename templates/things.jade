@@ -3,7 +3,7 @@ h2 Things
 ul
   each thing in things
     li
-      a(href="/things/" + thing.guid)= thing.name
+      a(href="#things/" + thing.guid)= thing.name
       a(href="#" data-delete-guid=thing.guid) ×
 
 h3 Add a Thing

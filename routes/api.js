@@ -94,7 +94,7 @@ router.put('/things/:guid', function(req, res, next) {
 router.delete('/things/:guid', function(req, res, next) {
   setTimeout(function () {
     mocks.splice(getIndexOf(req.params.guid), 1);
-    res.sendStatus(200);
+    res.send({});
   }, 1000);
 });
 
